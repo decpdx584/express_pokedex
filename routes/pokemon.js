@@ -11,8 +11,8 @@ router.get('/', async (req, res) => {
     res.render('favorites', {
       pokemon: foundPokemons
     });
-    } catch (err) {
-      res.render('err');
+  } catch (err) {
+    res.render('err');
   }
 });
 
@@ -31,16 +31,15 @@ router.post('/', async (req, res) => {
 });
 
 // GET /pokemon/:name
-router.get('/pokemon', async (req, res) => {
+router.get('/:name', async (req, res) => {
   try {
-    await db.pokemon.findOne({
-      where: {
-        name: req.body.name
-      }
-    })
-    res.render('show', {
-      pokemon: req.params
-    });
+    if (req.params && req.params.name) {
+      let pokemonURL = `httsps://pokeapi.co/api/v2/pokemon/${req.params.name.toLowerCase()}`;
+      const result = await axios.get(pokemonURL);
+      // console.log(response.data)
+      let details = response.data;
+      res.render('show', { pokeData: details });
+    }
   } catch (err) {
     res.render('err');
   }
