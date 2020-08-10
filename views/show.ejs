@@ -1,0 +1,26 @@
+<div class="container">
+    <h1 class="text-center">Details</h1>
+    <p class="text-center">
+        <a href="/pokemon">Favorites</a>
+    </p>
+
+    <% pokemon.forEach(function(pokemon) { %>
+
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img src="<%= pokemon.sprites.front_default %>">
+                    <span class="card-title"><%= pokemon.name %></span>
+                </div>
+                <div class="card-content">
+                    <p></p>
+                </div>
+                <div class="card-action">
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+</div>
