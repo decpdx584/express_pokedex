@@ -30,10 +30,17 @@ router.post('/', async (req, res) => {
   }
 });
 
-// GET /pokemon/:id
-router.get('/', async (req, res) => {
+// GET /pokemon/:name
+router.get('/pokemon', async (req, res) => {
   try {
-
+    await db.pokemon.findOne({
+      where: {
+        name: req.body.name
+      }
+    })
+    res.render('show', {
+      pokemon: req.params
+    });
   } catch (err) {
     res.render('err');
   }
