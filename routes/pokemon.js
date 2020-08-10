@@ -34,11 +34,10 @@ router.post('/', async (req, res) => {
 router.get('/:name', async (req, res) => {
   try {
     if (req.params && req.params.name) {
-      let pokemonURL = `httsps://pokeapi.co/api/v2/pokemon/${req.params.name.toLowerCase()}`;
+      const pokemonURL = `httsps://pokeapi.co/api/v2/pokemon/${req.params.name.toLowerCase()}`;
       const result = await axios.get(pokemonURL);
-      // console.log(response.data)
-      let details = response.data;
-      res.render('show', { pokeData: details });
+      let pokeInfo = result.data;
+      res.render('show', {pokeData: pokeInfo});
     }
   } catch (err) {
     res.render('err');
